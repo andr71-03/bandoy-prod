@@ -14,17 +14,5 @@ return Application::configure(basePath: dirname(__DIR__))
         $middleware->trustProxies(at: '*');
     })
     ->withExceptions(function (Exceptions $exceptions): void {
-        $exceptions->dontReport([
-            \ErrorException::class,
-        ]);
-    })
-    ->booted(function (): void {
-        error_reporting(E_ALL & ~E_DEPRECATED & ~E_USER_DEPRECATED);
-        set_error_handler(function ($severity, $message, $file, $line) {
-            if ($severity === E_DEPRECATED || $severity === E_USER_DEPRECATED) {
-                return true;
-            }
-            return false;
-        });
-    })
-    ->create();
+        //
+    })->create();
