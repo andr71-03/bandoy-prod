@@ -24,7 +24,7 @@ Route::get('dashboard', function (Request $request) {
 })->middleware(['auth'])->name('dashboard.redirect');
 
 Route::prefix('{current_team}')
-    ->middleware(['auth', 'verified', EnsureTeamMembership::class])
+    ->middleware(['auth', EnsureTeamMembership::class])
     ->group(function () {
         Route::get('dashboard', DashboardController::class)->name('dashboard');
     });
