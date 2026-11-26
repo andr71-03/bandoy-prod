@@ -12,9 +12,8 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
-    Route::view('/settings', 'settings')->name('settings');
-    Route::post('/settings', fn () => back()->with('status', 'settings-updated'))->name('settings.update');
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::redirect('/profile', '/settings')->name('profile.edit');
+    Route::get('/settings', [ProfileController::class, 'edit'])->name('settings');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
